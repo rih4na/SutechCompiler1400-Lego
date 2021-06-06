@@ -1,0 +1,84 @@
+
+
+public class Lexical_Analysis {
+
+ private int currentPoint = -1;
+    private int currentState = 0;
+
+    private String path;
+    private String code;
+//--------------------------------------------------------------Alphabet
+
+    private final char[] letters = {
+        'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',
+        'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+        'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
+        'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+    };
+    private final char[] digits = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+
+    private final char[] symbols = {'(', ')', '{', '}', ';', '+', '-', '*', '/', '=', '.', '<', '>',
+        '!', '"', '&', '|', '%'
+    };
+
+    private final char[] whiteSpaces = {
+        '\n', '\t', ' '
+    };
+
+    private final String[] keywords = {"for", "while", "if", "else", "then", "switch", "case", "break", "else if", "elseif", "static",
+        "void", "public", "default", "continue", "return", "long", "int", "String", "char", "boolean", "double", "flout"
+    };
+    
+    
+    
+    
+     //------------------------------------Cheking Alphabet
+    private boolean isInLetters(char ch) {
+        for (int i = 0; i < letters.length; i++) {
+            if (letters[i] == ch) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isInWhiteSpaces(char ch) {
+        for (int i = 0; i < whiteSpaces.length; i++) {
+            if (whiteSpaces[i] == ch) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isInDigits(char ch) {
+        for (int i = 0; i < digits.length; i++) {
+            if (digits[i] == ch) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isInSymbols(char ch) {
+        for (int i = 0; i < symbols.length; i++) {
+            if (symbols[i] == ch) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isInKeywords(String word) {
+        for (int i = 0; i < keywords.length; i++) {
+            if (word.equals(keywords[i])) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+
+
+}
