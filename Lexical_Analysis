@@ -82,3 +82,35 @@ public class Lexical_Analysis {
 
 
 }
+    //-----------------------------------nextChar
+    private char nextChar() {   //---daryafte char e badi ba ezafe shodn be currentPoint
+        char ch;
+        currentPoint++;
+
+        if (currentPoint >= code.length()) {
+            return '$';  //--alamate payan code
+        }
+        ch = code.charAt(currentPoint);  //---index char ha das string code
+
+        if (!(isInDigits(ch) || isInLetters(ch) || isInSymbols(ch) || isInWhiteSpaces(ch))) {
+            System.out.println("character " + ch + " is not in Alphabet");
+            ch = ' ';
+        }
+
+        return ch;
+    }
+    
+    
+        private char watchNextChar() {  //---nim negahi be char e badi
+        char ch;
+        int watchNextCharPoint = currentPoint + 1;
+
+        if (watchNextCharPoint >= code.length()) {
+            return '$';
+        }
+
+        ch = code.charAt(watchNextCharPoint);
+
+        return ch;
+    }
+
