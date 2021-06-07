@@ -127,6 +127,70 @@ public class Lexical_Analysis {
                     
                     
                 case 1:
+                nChar = watchNextChar();
+                    nState = nextState(currentState, nChar);
+
+                    if (nState == -1) {
+                        if (isInKeywords(token_name)) {
+                            if (token_name.equals("boolean")) {
+                                return new Token(token_name, 0, 0, Token.Token_Type.Boolean, Token.ID_Type.none);
+                            } else if (token_name.equals("break")) {
+                                return new Token(token_name, 0, 0, Token.Token_Type.Break, Token.ID_Type.none);
+                            } else if (token_name.equals("case")) {
+                                return new Token(token_name, 0, 0, Token.Token_Type.Case, Token.ID_Type.none);
+                            } else if (token_name.equals("char")) {
+                                return new Token(token_name, 0, 0, Token.Token_Type.Char, Token.ID_Type.none);
+                            } else if (token_name.equals("continue")) {
+                                return new Token(token_name, 0, 0, Token.Token_Type.Continue, Token.ID_Type.none);
+                            } else if (token_name.equals("default")) {
+                                return new Token(token_name, 0, 0, Token.Token_Type.Default, Token.ID_Type.none);
+                            } else if (token_name.equals("double")) {
+                                return new Token(token_name, 0, 0, Token.Token_Type.Double, Token.ID_Type.none);
+                            } else if (token_name.equals("else")) {
+                                return new Token(token_name, 0, 0, Token.Token_Type.Else, Token.ID_Type.none);
+                            } else if (token_name.equals("else if")) {
+                                return new Token(token_name, 0, 0, Token.Token_Type.ElseIf, Token.ID_Type.none);
+                            } else if (token_name.equals("elseif")) {
+                                return new Token(token_name, 0, 0, Token.Token_Type.Elseif, Token.ID_Type.none);
+                            } else if (token_name.equals("float")) {
+                                return new Token(token_name, 0, 0, Token.Token_Type.Float, Token.ID_Type.none);
+                            } else if (token_name.equals("for")) {
+                                return new Token(token_name, 0, 0, Token.Token_Type.For, Token.ID_Type.none);
+                            } else if (token_name.equals("input")) {
+                                return new Token(token_name, 0, 0, Token.Token_Type.input, Token.ID_Type.none);
+                            } else if (token_name.equals("if")) {
+                                return new Token(token_name, 0, 0, Token.Token_Type.IF, Token.ID_Type.none);
+                            } else if (token_name.equals("int")) {
+                                return new Token(token_name, 0, 0, Token.Token_Type.Int, Token.ID_Type.none);
+                            } else if (token_name.equals("long")) {
+                                return new Token(token_name, 0, 0, Token.Token_Type.Long, Token.ID_Type.none);
+                            } else if (token_name.equals("public")) {
+                                return new Token(token_name, 0, 0, Token.Token_Type.Public, Token.ID_Type.none);
+                            } else if (token_name.equals("static")) {
+                                return new Token(token_name, 0, 0, Token.Token_Type.Static, Token.ID_Type.none);
+                            } else if (token_name.equals("String")) {
+                                return new Token(token_name, 0, 0, Token.Token_Type.String, Token.ID_Type.none);
+                            } else if (token_name.equals("switch")) {
+                                return new Token(token_name, 0, 0, Token.Token_Type.Switch, Token.ID_Type.none);
+                            } else if (token_name.equals("then")) {
+                                return new Token(token_name, 0, 0, Token.Token_Type.Then, Token.ID_Type.none);
+                            } else if (token_name.equals("void")) {
+                                return new Token(token_name, 0, 0, Token.Token_Type.Void, Token.ID_Type.none);
+                            } else if (token_name.equals("while")) {
+                                return new Token(token_name, 0, 0, Token.Token_Type.While, Token.ID_Type.none);
+                            } else if (token_name.equals("print")) {
+                                return new Token(token_name, 0, 0, Token.Token_Type.print, Token.ID_Type.none);
+
+                            }
+                        } else {
+                            return new Token(token_name, 0, 0, Token.Token_Type.id, Token.ID_Type.none);  //id type none chon tahlil gar nahvi inkaro anjam mide
+                        }
+
+                    } else {
+                        ch = nextChar();
+                        token_name = token_name + ch;
+                        currentState = nState;
+                    }
                         break;
                 case 2:
                         break;
