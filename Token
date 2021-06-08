@@ -1,3 +1,5 @@
+package lego_compiler;
+
 public class Token {
     public enum Token_Type {
         Long,Int,string,Char,Boolean,Double,Float, print, input ,id, plus, intNumber, floatNumber, minus,mod,minusMinus,plusPlus,and,or,
