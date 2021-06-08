@@ -32,7 +32,9 @@ public class Lexical_Analysis {
     
         //---------------------------------------------Transsition Table
         
-        
+    
+    //agar dar har state b ezaye yek alphabet b hich state e digari naravim meghsare an -1 dar nazar gerefte shode
+    
     private final int[][] TTable = {
         {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 9, 10, 12, 13, 11, 2, 4, 27, 19, 28, -1, 30, 32, 34, 25, 14, 16, 18, 37, 37, 37, 36},
         {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
@@ -192,40 +194,136 @@ public class Lexical_Analysis {
                         currentState = nState;
                     }
                         break;
+                        
                 case 2:
-                        break;
+                    nChar=watchNextChar();
+                    nState=nextState(currentState,nChar);
+
+                    if (nState != -1) {
+                        ch = nextChar();
+                        token_name = token_name + ch;
+                        currentState =nState;
+
+                    } else {
+                        return new Token(token_name, 0, 0, Token.Token_Type.plus, Token.ID_Type.none);
+                    }
+
+                    break;
+
                 case 3:
-                        break;
+
+                    return new Token(token_name, 0, 0, Token.Token_Type.plusPlus, Token.ID_Type.none); //++
+
                 case 4:
-                       break;
+                    nChar=watchNextChar();
+                    nState=nextState(currentState,nChar);
+                    
+                    if (nState != -1) {
+                        ch = nextChar();
+                        token_name = token_name + ch;
+                        currentState =nState;
+
+                    } else {
+                        return new Token(token_name, 0, 0, Token.Token_Type.minus, Token.ID_Type.none);
+                    }
+
+                    break;
+
                 case 5:
-                       break;
+                    return new Token(token_name, 0, 0, Token.Token_Type.minusMinus, Token.ID_Type.none); ///--
+
                 case 6:
-                       break;
+                    nChar=watchNextChar();
+                    nState=nextState(currentState,nChar);
+                    
+                    if (nState != -1) {
+                        ch = nextChar();
+                        token_name = token_name + ch;
+                        currentState =nState;
+                    } else {
+                        return new Token(token_name, 0, 0, Token.Token_Type.intNumber, Token.ID_Type.none);
+                    }
+
+                    break;
+
                 case 7:
-                       break;
+                    nChar=watchNextChar();
+                    nState=nextState(currentState,nChar);
+                    if (nState != -1) {
+                        ch = nextChar();
+                        token_name = token_name + ch;
+                        currentState = nState;
+                    } else {
+                        return new Token(token_name + " is not Defined in Lego Language", 0, 0, Token.Token_Type.err, Token.ID_Type.none); //33. tarish nashode bayad bashe
+                    }
+
+                    break;
+
                 case 8:
-                       break;
+                    nChar=watchNextChar();
+                    nState=nextState(currentState,nChar);
+                    if (nState != -1) {
+                        ch = nextChar();
+                        token_name = token_name + ch;
+                        currentState = nState;
+                    } else {
+                        return new Token(token_name, 0, 0, Token.Token_Type.floatNumber, Token.ID_Type.none);
+                    }
+
+                    break;
+
                 case 9:
-                       break;
+                    return new Token(token_name, 0, 0, Token.Token_Type.leftParentheses, Token.ID_Type.none);
+
                 case 10:
-                       break;
+                    return new Token(token_name, 0, 0, Token.Token_Type.rightParentheses, Token.ID_Type.none);
+
                 case 11:
-                       break;       
+                    return new Token(token_name, 0, 0, Token.Token_Type.semicolon, Token.ID_Type.none);
+
                 case 12:
-                       break;
+                    return new Token(token_name, 0, 0, Token.Token_Type.leftAccolade, Token.ID_Type.none);
+
                 case 13:
-                       break;
+                    return new Token(token_name, 0, 0, Token.Token_Type.rightAccolade, Token.ID_Type.none);
+
                 case 14:
-                       break;
+                    nChar=watchNextChar();
+                    nState=nextState(currentState,nChar);
+                    if (nState != -1) {
+                        ch = nextChar();
+                        token_name = token_name + ch;
+                        currentState = nState;
+                    } else {
+                        token_name = token_name + " is not defined in Lego Language";
+                        return new Token(token_name, 0, 0, Token.Token_Type.err, Token.ID_Type.none);
+                    }
+
+                    break;
+
                 case 15:
-                       break;
+                    return new Token(token_name, 0, 0, Token.Token_Type.and, Token.ID_Type.none);
+
                 case 16:
-                       break; 
+                    nChar=watchNextChar();
+                    nState=nextState(currentState,nChar);
+                    if (nState != -1) {
+                        ch = nextChar();
+                        token_name = token_name + ch;
+                        currentState =nState;
+                    } else {
+                        token_name = token_name + "is not defined in Lego Language";
+                        return new Token(token_name, 0, 0, Token.Token_Type.err, Token.ID_Type.none);
+                    }
+
+                    break;
+
                 case 17:
-                       break;
+                    return new Token(token_name, 0, 0, Token.Token_Type.or, Token.ID_Type.none);
+
                 case 18:
-                       break;
+                    return new Token(token_name, 0, 0, Token.Token_Type.mod, Token.ID_Type.none);
+
                 case 19:
                        break;
                case 20:
