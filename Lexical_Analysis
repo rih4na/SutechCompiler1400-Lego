@@ -562,4 +562,28 @@ public class Lexical_Analysis {
 
         return ch;
     }
+    
+    
+    
+    //----------------------------------------Constructor
+    public Lexical_Analysis(String path) {
+        this.setPath(path);
+    }
+    //------------------------------------------SetPath
+
+    private void setPath(String path) {             //----kole file ro mikhone dakhel code zakhire mikone
+        code = "";
+        try {
+            File source = new File(path);
+            Scanner scn = new Scanner(source);
+            while (scn.hasNextLine()) {   //ta zamani ke khate jadid darim
+                code = code+"\n"+scn.nextLine();   //code khat be khat khande mishavad
+            }
+            scn.close();
+        } catch (FileNotFoundException e) {
+            System.err.println("Source File not Found");   
+            e.printStackTrace();
+        }
+    }    
+}
 
