@@ -1,15 +1,18 @@
+package lego_compiler;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 public class Lexical_Analysis {
 
- private int currentPoint = -1;
-    private int currentState = 0;
+ private int currentPoint = -1;         //negah darande makane char e feli   
+ private int currentState = 0;         //negah darande state feli
 
-    private String path;
-    private String code;
+ private String code;                 
 //--------------------------------------------------------------Alphabet
 
-    private final char[] letters = {
+   private final char[] letters = {
         'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',
         'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
         'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
