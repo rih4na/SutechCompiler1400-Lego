@@ -10,7 +10,6 @@ public class Lego_compiler {
         System.out.println("welcome to Lego Compiler");
         System.out.println("please enter your  file address  : ");
         file=scn.next();
-        System.out.println("D:\\\\compiler_project\\\\text.txt");
         Lexical_Analysis obj = new Lexical_Analysis(file);
         Token token;
         do{
