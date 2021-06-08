@@ -325,44 +325,160 @@ public class Lexical_Analysis {
                     return new Token(token_name, 0, 0, Token.Token_Type.mod, Token.ID_Type.none);
 
                 case 19:
-                       break;
-               case 20:
-                       break;
-               case 21:
-                       break;
-               case 22:
-                       break;
-               case 23:
-                       break;
-               case 24:
-                       break;
-               case 25:
-                       break;
-               case 26:
-                       break;
-               case 27:
-                       break;
-               case 28:
-                       break;
-               case 29:
-                       break;
-               case 30:
-                       break;
-               case 31:
-                       break;
-               case 32:
-                       break;
-               case 33:
-                       break;
-               case 34:
-                       break;
-               case 35:
-                       break;
-               case 36:
-                       break;
-               case 37:
-                       break;
-    
+                    nChar = watchNextChar();
+                    nState = nextState(currentState, nChar);
+                    if (nState != -1) {
+                        ch = nextChar();
+                        token_name = token_name + ch;
+                        currentState = nState;
+
+                    } else {
+                        return new Token(token_name, 0, 0, Token.Token_Type.divide, Token.ID_Type.none);
+                    }
+
+                    break;
+
+                case 20:   // comment tak khati
+                    if (watchNextChar() == '$') { //baraye zamani ke comment dar khat akhare
+                        return new Token(token_name, 0, 0, Token.Token_Type.lineComment, Token.ID_Type.none);
+                    } else {
+                        ch = nextChar();
+                        token_name = token_name + ch;
+                        currentState = nextState(currentState, ch);
+                    }
+
+                    break;
+
+                case 21:
+                    return new Token(token_name, 0, 0, Token.Token_Type.lineComment, Token.ID_Type.none);
+
+                case 22:
+                    nChar = watchNextChar();
+                    nState = nextState(currentState, nChar);
+                    if (nChar == '$') {  //age tahe cod */ nazanim va comment ro nabandim
+                        return new Token("Multi Line Comment Missing */", 0, 0, Token.Token_Type.err, Token.ID_Type.none);
+
+                    } else {
+                        ch = nextChar();
+                        token_name = token_name + ch;
+                        currentState = nState;
+                    }
+
+                    break;
+
+                case 23:
+                    nChar = watchNextChar();
+                    nState = nextState(currentState, nChar);
+                    if (nChar == '$') {  //age tahe cod / nazanim va comment ro nabandim
+                        return new Token("Multi Line Comment Missing /", 0, 0, Token.Token_Type.err, Token.ID_Type.none);
+
+                    } else {
+                        ch = nextChar();
+                        token_name = token_name + ch;
+                        currentState = nState;
+                    }
+
+                    break;
+
+                case 24:
+                    return new Token(token_name, 0, 0, Token.Token_Type.multiLineComment, Token.ID_Type.none);
+
+                case 25:
+                    nChar = watchNextChar();
+                    nState = nextState(currentState, nChar);
+                    if (nChar == '$') {  //age tahe cod " nazanim va jomle  ro nabandim
+                        return new Token("String Missing \"  ", 0, 0, Token.Token_Type.err, Token.ID_Type.none);
+
+                    } else {
+                        ch = nextChar();
+                        token_name = token_name + ch;
+                        currentState = nState;
+                    }
+
+                    break;
+
+                case 26:
+                    return new Token(token_name, 0, 0, Token.Token_Type.String, Token.ID_Type.none);
+
+                case 27:
+
+                    return new Token(token_name, 0, 0, Token.Token_Type.multiple, Token.ID_Type.none);
+
+                case 28:
+                    nChar = watchNextChar();
+                    nState = nextState(currentState, nChar);
+                    if (nState != -1) {
+                        ch = nextChar();
+                        token_name = token_name + ch;
+                        currentState = nState;
+                    } else {
+                        return new Token(token_name, 0, 0, Token.Token_Type.equal, Token.ID_Type.none);
+                    }
+
+                    break;
+
+                case 29:
+                    return new Token(token_name, 0, 0, Token.Token_Type.equalTwice, Token.ID_Type.none);
+
+                case 30:
+                    if (watchNextChar() == '=') {
+                        ch = nextChar();
+                        token_name = token_name + ch;
+                        currentState = 31;
+                    } else {
+                        return new Token(token_name, 0, 0, Token.Token_Type.less, Token.ID_Type.none);
+                    }
+
+                    break;
+
+                case 31:
+                    return new Token(token_name, 0, 0, Token.Token_Type.lessEqual, Token.ID_Type.none);
+
+                case 32:
+                    nChar = watchNextChar();
+                    nState = nextState(currentState, nChar);
+                    if (nState != -1) {
+                        ch = nextChar();
+                        token_name = token_name + ch;
+                        currentState = nState;
+                    } else {
+                        return new Token(token_name, 0, 0, Token.Token_Type.more, Token.ID_Type.none);
+                    }
+
+                    break;
+
+                case 33:
+                    return new Token(token_name, 0, 0, Token.Token_Type.moreEqual, Token.ID_Type.none);
+
+                case 34:
+                    nChar = watchNextChar();
+                    nState = nextState(currentState, nChar);
+                    if (nState != -1) {
+                        ch = nextChar();
+                        token_name = token_name + ch;
+                        currentState = nState;
+                    } else {
+                        return new Token("not (!=) Missing =", 0, 0, Token.Token_Type.err, Token.ID_Type.none);
+                    }
+
+                    break;
+
+                case 35:
+                    return new Token(token_name, 0, 0, Token.Token_Type.notEqual, Token.ID_Type.none);
+
+                case 36:
+                    return new Token(token_name, 0, 0, Token.Token_Type.$, Token.ID_Type.none);
+
+                case 37:
+                    token_name = "";  //bayad bargardim be state 0 
+                    currentState = 0;
+
+                    break;
+
+            }
+      }
+    }
+
     
     
     //------------------------------------Cheking Alphabet
