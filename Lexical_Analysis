@@ -35,7 +35,7 @@ public class Lexical_Analysis {
     };
 
     private final String[] keywords = {"for", "while", "if", "else", "then", "switch", "case", "break", "else if", "elseif", "static",
-        "void", "public", "default", "continue", "return", "long", "int", "String", "char", "boolean", "double", "flout"
+        "void", "public", "default", "continue", "return", "long", "int", "String", "char", "boolean", "double", "float"
     };
     
     
@@ -140,7 +140,7 @@ public class Lexical_Analysis {
                     currentState=nextState(currentState,ch);
                     if (currentState==-1) {
                         token_name = token_name + "is not defined in Lego Language";
-                        return new Token(token_name, 0, 0, Token.Token_Type.err, Token.ID_Type.none);
+                        return new Token(token_name, 0, 0, Token.Token_Type.err, Token.ID_Type.none,"");
                     }
 
                     break;
@@ -154,57 +154,62 @@ public class Lexical_Analysis {
                     if (nState == -1) {
                         if (isInKeywords(token_name)) {
                             if (token_name.equals("boolean")) {
-                                return new Token(token_name, 0, 0, Token.Token_Type.Boolean, Token.ID_Type.none);
+                                return new Token(token_name, 0, 0, Token.Token_Type.Boolean, Token.ID_Type.none,"");
                             } else if (token_name.equals("break")) {
-                                return new Token(token_name, 0, 0, Token.Token_Type.Break, Token.ID_Type.none);
+                                return new Token(token_name, 0, 0, Token.Token_Type.Break, Token.ID_Type.none,"");
                             } else if (token_name.equals("case")) {
-                                return new Token(token_name, 0, 0, Token.Token_Type.Case, Token.ID_Type.none);
+                                return new Token(token_name, 0, 0, Token.Token_Type.Case, Token.ID_Type.none,"");
                             } else if (token_name.equals("char")) {
-                                return new Token(token_name, 0, 0, Token.Token_Type.Char, Token.ID_Type.none);
+                                return new Token(token_name, 0, 0, Token.Token_Type.Char, Token.ID_Type.none,"");
                             } else if (token_name.equals("continue")) {
-                                return new Token(token_name, 0, 0, Token.Token_Type.Continue, Token.ID_Type.none);
+                                return new Token(token_name, 0, 0, Token.Token_Type.Continue, Token.ID_Type.none,"");
                             } else if (token_name.equals("default")) {
-                                return new Token(token_name, 0, 0, Token.Token_Type.Default, Token.ID_Type.none);
+                                return new Token(token_name, 0, 0, Token.Token_Type.Default, Token.ID_Type.none,"");
                             } else if (token_name.equals("double")) {
-                                return new Token(token_name, 0, 0, Token.Token_Type.Double, Token.ID_Type.none);
+                                return new Token(token_name, 0, 0, Token.Token_Type.Double, Token.ID_Type.none,"");
                             } else if (token_name.equals("else")) {
-                                return new Token(token_name, 0, 0, Token.Token_Type.Else, Token.ID_Type.none);
+                                return new Token(token_name, 0, 0, Token.Token_Type.Else, Token.ID_Type.none,"");
                             } else if (token_name.equals("else if")) {
-                                return new Token(token_name, 0, 0, Token.Token_Type.ElseIf, Token.ID_Type.none);
+                                return new Token(token_name, 0, 0, Token.Token_Type.ElseIf, Token.ID_Type.none,"");
                             } else if (token_name.equals("elseif")) {
-                                return new Token(token_name, 0, 0, Token.Token_Type.Elseif, Token.ID_Type.none);
+                                return new Token(token_name, 0, 0, Token.Token_Type.Elseif, Token.ID_Type.none,"");
                             } else if (token_name.equals("float")) {
-                                return new Token(token_name, 0, 0, Token.Token_Type.Float, Token.ID_Type.none);
+                                return new Token(token_name, 0, 0, Token.Token_Type.Float, Token.ID_Type.none,"");
                             } else if (token_name.equals("for")) {
-                                return new Token(token_name, 0, 0, Token.Token_Type.For, Token.ID_Type.none);
+                                return new Token(token_name, 0, 0, Token.Token_Type.For, Token.ID_Type.none,"");
                             } else if (token_name.equals("input")) {
-                                return new Token(token_name, 0, 0, Token.Token_Type.input, Token.ID_Type.none);
+                                return new Token(token_name, 0, 0, Token.Token_Type.input, Token.ID_Type.none,"");
                             } else if (token_name.equals("if")) {
-                                return new Token(token_name, 0, 0, Token.Token_Type.IF, Token.ID_Type.none);
+                                return new Token(token_name, 0, 0, Token.Token_Type.IF, Token.ID_Type.none,"");
                             } else if (token_name.equals("int")) {
-                                return new Token(token_name, 0, 0, Token.Token_Type.Int, Token.ID_Type.none);
+                                return new Token(token_name, 0, 0, Token.Token_Type.Int, Token.ID_Type.none,"");
                             } else if (token_name.equals("long")) {
-                                return new Token(token_name, 0, 0, Token.Token_Type.Long, Token.ID_Type.none);
+                                return new Token(token_name, 0, 0, Token.Token_Type.Long, Token.ID_Type.none,"");
                             } else if (token_name.equals("public")) {
-                                return new Token(token_name, 0, 0, Token.Token_Type.Public, Token.ID_Type.none);
+                                return new Token(token_name, 0, 0, Token.Token_Type.Public, Token.ID_Type.none,"");
                             } else if (token_name.equals("static")) {
-                                return new Token(token_name, 0, 0, Token.Token_Type.Static, Token.ID_Type.none);
+                                return new Token(token_name, 0, 0, Token.Token_Type.Static, Token.ID_Type.none,"");
                             } else if (token_name.equals("String")) {
-                                return new Token(token_name, 0, 0, Token.Token_Type.String, Token.ID_Type.none);
+                                return new Token(token_name, 0, 0, Token.Token_Type.String, Token.ID_Type.none,"");
                             } else if (token_name.equals("switch")) {
-                                return new Token(token_name, 0, 0, Token.Token_Type.Switch, Token.ID_Type.none);
+                                return new Token(token_name, 0, 0, Token.Token_Type.Switch, Token.ID_Type.none,"");
                             } else if (token_name.equals("then")) {
-                                return new Token(token_name, 0, 0, Token.Token_Type.Then, Token.ID_Type.none);
+                                return new Token(token_name, 0, 0, Token.Token_Type.Then, Token.ID_Type.none,"");
                             } else if (token_name.equals("void")) {
-                                return new Token(token_name, 0, 0, Token.Token_Type.Void, Token.ID_Type.none);
+                                return new Token(token_name, 0, 0, Token.Token_Type.Void, Token.ID_Type.none,"");
                             } else if (token_name.equals("while")) {
-                                return new Token(token_name, 0, 0, Token.Token_Type.While, Token.ID_Type.none);
+                                return new Token(token_name, 0, 0, Token.Token_Type.While, Token.ID_Type.none,"");
                             } else if (token_name.equals("print")) {
-                                return new Token(token_name, 0, 0, Token.Token_Type.print, Token.ID_Type.none);
+                                return new Token(token_name, 0, 0, Token.Token_Type.print, Token.ID_Type.none,"");
+
+                            }else if (token_name.equals("true")|| token_name.equals("false")) {
+                                Token name = new Token(token_name, 0, 0, Token.Token_Type.Boolean_literal, Token.ID_Type.none, "");
+
+                                return name;
 
                             }
                         } else {
-                            return new Token(token_name, 0, 0, Token.Token_Type.id, Token.ID_Type.none);  //id type none chon tahlil gar nahvi inkaro anjam mide
+                            return new Token(token_name, 0, 0, Token.Token_Type.id, Token.ID_Type.none,"");  //id type none chon tahlil gar nahvi inkaro anjam mide
                         }
 
                     } else {
@@ -224,14 +229,14 @@ public class Lexical_Analysis {
                         currentState =nState;
 
                     } else {
-                        return new Token(token_name, 0, 0, Token.Token_Type.plus, Token.ID_Type.none);
+                        return new Token(token_name, 0, 0, Token.Token_Type.plus, Token.ID_Type.none,"");
                     }
 
                     break;
 
                 case 3:
 
-                    return new Token(token_name, 0, 0, Token.Token_Type.plusPlus, Token.ID_Type.none); //++
+                    return new Token(token_name, 0, 0, Token.Token_Type.plusPlus, Token.ID_Type.none,""); //++
 
                 case 4:
                     nChar=watchNextChar();
@@ -243,13 +248,13 @@ public class Lexical_Analysis {
                         currentState =nState;
 
                     } else {
-                        return new Token(token_name, 0, 0, Token.Token_Type.minus, Token.ID_Type.none);
+                        return new Token(token_name, 0, 0, Token.Token_Type.minus, Token.ID_Type.none,"");
                     }
 
                     break;
 
                 case 5:
-                    return new Token(token_name, 0, 0, Token.Token_Type.minusMinus, Token.ID_Type.none); ///--
+                    return new Token(token_name, 0, 0, Token.Token_Type.minusMinus, Token.ID_Type.none,""); ///--
 
                 case 6:
                     nChar=watchNextChar();
@@ -260,7 +265,7 @@ public class Lexical_Analysis {
                         token_name = token_name + ch;
                         currentState =nState;
                     } else {
-                        return new Token(token_name, 0, 0, Token.Token_Type.intNumber, Token.ID_Type.none);
+                        return new Token(token_name, 0, 0, Token.Token_Type.intNumber, Token.ID_Type.none,"");
                     }
 
                     break;
@@ -273,7 +278,7 @@ public class Lexical_Analysis {
                         token_name = token_name + ch;
                         currentState = nState;
                     } else {
-                        return new Token(token_name + " is not Defined in Lego Language", 0, 0, Token.Token_Type.err, Token.ID_Type.none); //33. tarish nashode bayad bashe
+                        return new Token(token_name + " is not Defined in Lego Language", 0, 0, Token.Token_Type.err, Token.ID_Type.none,""); 
                     }
 
                     break;
@@ -286,25 +291,25 @@ public class Lexical_Analysis {
                         token_name = token_name + ch;
                         currentState = nState;
                     } else {
-                        return new Token(token_name, 0, 0, Token.Token_Type.floatNumber, Token.ID_Type.none);
+                        return new Token(token_name, 0, 0, Token.Token_Type.floatNumber, Token.ID_Type.none,"");
                     }
 
                     break;
 
                 case 9:
-                    return new Token(token_name, 0, 0, Token.Token_Type.leftParentheses, Token.ID_Type.none);
+                    return new Token(token_name, 0, 0, Token.Token_Type.leftParentheses, Token.ID_Type.none,"");
 
                 case 10:
-                    return new Token(token_name, 0, 0, Token.Token_Type.rightParentheses, Token.ID_Type.none);
+                    return new Token(token_name, 0, 0, Token.Token_Type.rightParentheses, Token.ID_Type.none,"");
 
                 case 11:
-                    return new Token(token_name, 0, 0, Token.Token_Type.semicolon, Token.ID_Type.none);
+                    return new Token(token_name, 0, 0, Token.Token_Type.semicolon, Token.ID_Type.none,"");
 
                 case 12:
-                    return new Token(token_name, 0, 0, Token.Token_Type.leftAccolade, Token.ID_Type.none);
+                    return new Token(token_name, 0, 0, Token.Token_Type.leftAccolade, Token.ID_Type.none,"");
 
                 case 13:
-                    return new Token(token_name, 0, 0, Token.Token_Type.rightAccolade, Token.ID_Type.none);
+                    return new Token(token_name, 0, 0, Token.Token_Type.rightAccolade, Token.ID_Type.none,"");
 
                 case 14:
                     nChar=watchNextChar();
@@ -315,13 +320,13 @@ public class Lexical_Analysis {
                         currentState = nState;
                     } else {
                         token_name = token_name + " is not defined in Lego Language";
-                        return new Token(token_name, 0, 0, Token.Token_Type.err, Token.ID_Type.none);
+                        return new Token(token_name, 0, 0, Token.Token_Type.err, Token.ID_Type.none,"");
                     }
 
                     break;
 
                 case 15:
-                    return new Token(token_name, 0, 0, Token.Token_Type.and, Token.ID_Type.none);
+                    return new Token(token_name, 0, 0, Token.Token_Type.and, Token.ID_Type.none,"");
 
                 case 16:
                     nChar=watchNextChar();
@@ -332,16 +337,16 @@ public class Lexical_Analysis {
                         currentState =nState;
                     } else {
                         token_name = token_name + "is not defined in Lego Language";
-                        return new Token(token_name, 0, 0, Token.Token_Type.err, Token.ID_Type.none);
+                        return new Token(token_name, 0, 0, Token.Token_Type.err, Token.ID_Type.none,"");
                     }
 
                     break;
 
                 case 17:
-                    return new Token(token_name, 0, 0, Token.Token_Type.or, Token.ID_Type.none);
+                    return new Token(token_name, 0, 0, Token.Token_Type.or, Token.ID_Type.none,"");
 
                 case 18:
-                    return new Token(token_name, 0, 0, Token.Token_Type.mod, Token.ID_Type.none);
+                    return new Token(token_name, 0, 0, Token.Token_Type.mod, Token.ID_Type.none,"");
 
                 case 19:
                     nChar = watchNextChar();
@@ -352,14 +357,14 @@ public class Lexical_Analysis {
                         currentState = nState;
 
                     } else {
-                        return new Token(token_name, 0, 0, Token.Token_Type.divide, Token.ID_Type.none);
+                        return new Token(token_name, 0, 0, Token.Token_Type.divide, Token.ID_Type.none,"");
                     }
 
                     break;
 
                 case 20:   // comment tak khati
                     if (watchNextChar() == '$') { //baraye zamani ke comment dar khat akhare
-                        return new Token(token_name, 0, 0, Token.Token_Type.lineComment, Token.ID_Type.none);
+                        return new Token(token_name, 0, 0, Token.Token_Type.lineComment, Token.ID_Type.none,"");
                     } else {
                         ch = nextChar();
                         token_name = token_name + ch;
@@ -369,13 +374,13 @@ public class Lexical_Analysis {
                     break;
 
                 case 21:
-                    return new Token(token_name, 0, 0, Token.Token_Type.lineComment, Token.ID_Type.none);
+                    return new Token(token_name, 0, 0, Token.Token_Type.lineComment, Token.ID_Type.none,"");
 
                 case 22:
                     nChar = watchNextChar();
                     nState = nextState(currentState, nChar);
                     if (nChar == '$') {  //age tahe cod */ nazanim va comment ro nabandim
-                        return new Token("Multi Line Comment Missing */", 0, 0, Token.Token_Type.err, Token.ID_Type.none);
+                        return new Token("Multi Line Comment Missing */", 0, 0, Token.Token_Type.err, Token.ID_Type.none,"");
 
                     } else {
                         ch = nextChar();
@@ -389,7 +394,7 @@ public class Lexical_Analysis {
                     nChar = watchNextChar();
                     nState = nextState(currentState, nChar);
                     if (nChar == '$') {  //age tahe cod / nazanim va comment ro nabandim
-                        return new Token("Multi Line Comment Missing /", 0, 0, Token.Token_Type.err, Token.ID_Type.none);
+                        return new Token("Multi Line Comment Missing /", 0, 0, Token.Token_Type.err, Token.ID_Type.none,"");
 
                     } else {
                         ch = nextChar();
@@ -400,13 +405,13 @@ public class Lexical_Analysis {
                     break;
 
                 case 24:
-                    return new Token(token_name, 0, 0, Token.Token_Type.multiLineComment, Token.ID_Type.none);
+                    return new Token(token_name, 0, 0, Token.Token_Type.multiLineComment, Token.ID_Type.none,"");
 
                 case 25:
                     nChar = watchNextChar();
                     nState = nextState(currentState, nChar);
                     if (nChar == '$') {  //age tahe cod " nazanim va jomle  ro nabandim
-                        return new Token("String Missing \"  ", 0, 0, Token.Token_Type.err, Token.ID_Type.none);
+                        return new Token("String Missing \"  ", 0, 0, Token.Token_Type.err, Token.ID_Type.none,"");
 
                     } else {
                         ch = nextChar();
@@ -417,11 +422,11 @@ public class Lexical_Analysis {
                     break;
 
                 case 26:
-                    return new Token(token_name, 0, 0, Token.Token_Type.String, Token.ID_Type.none);
+                    return new Token(token_name, 0, 0, Token.Token_Type.String, Token.ID_Type.none,"");
 
                 case 27:
 
-                    return new Token(token_name, 0, 0, Token.Token_Type.multiple, Token.ID_Type.none);
+                    return new Token(token_name, 0, 0, Token.Token_Type.multiple, Token.ID_Type.none,"");
 
                 case 28:
                     nChar = watchNextChar();
@@ -431,13 +436,13 @@ public class Lexical_Analysis {
                         token_name = token_name + ch;
                         currentState = nState;
                     } else {
-                        return new Token(token_name, 0, 0, Token.Token_Type.equal, Token.ID_Type.none);
+                        return new Token(token_name, 0, 0, Token.Token_Type.equal, Token.ID_Type.none,"");
                     }
 
                     break;
 
                 case 29:
-                    return new Token(token_name, 0, 0, Token.Token_Type.equalTwice, Token.ID_Type.none);
+                    return new Token(token_name, 0, 0, Token.Token_Type.equalTwice, Token.ID_Type.none,"");
 
                 case 30:
                     if (watchNextChar() == '=') {
@@ -445,13 +450,13 @@ public class Lexical_Analysis {
                         token_name = token_name + ch;
                         currentState = 31;
                     } else {
-                        return new Token(token_name, 0, 0, Token.Token_Type.less, Token.ID_Type.none);
+                        return new Token(token_name, 0, 0, Token.Token_Type.less, Token.ID_Type.none,"");
                     }
 
                     break;
 
                 case 31:
-                    return new Token(token_name, 0, 0, Token.Token_Type.lessEqual, Token.ID_Type.none);
+                    return new Token(token_name, 0, 0, Token.Token_Type.lessEqual, Token.ID_Type.none,"");
 
                 case 32:
                     nChar = watchNextChar();
@@ -461,13 +466,13 @@ public class Lexical_Analysis {
                         token_name = token_name + ch;
                         currentState = nState;
                     } else {
-                        return new Token(token_name, 0, 0, Token.Token_Type.more, Token.ID_Type.none);
+                        return new Token(token_name, 0, 0, Token.Token_Type.more, Token.ID_Type.none,"");
                     }
 
                     break;
 
                 case 33:
-                    return new Token(token_name, 0, 0, Token.Token_Type.moreEqual, Token.ID_Type.none);
+                    return new Token(token_name, 0, 0, Token.Token_Type.moreEqual, Token.ID_Type.none,"");
 
                 case 34:
                     nChar = watchNextChar();
@@ -477,22 +482,68 @@ public class Lexical_Analysis {
                         token_name = token_name + ch;
                         currentState = nState;
                     } else {
-                        return new Token("not (!=) Missing =", 0, 0, Token.Token_Type.err, Token.ID_Type.none);
+                        return new Token("not (!=) Missing =", 0, 0, Token.Token_Type.err, Token.ID_Type.none,"");
                     }
 
                     break;
 
                 case 35:
-                    return new Token(token_name, 0, 0, Token.Token_Type.notEqual, Token.ID_Type.none);
+                    return new Token(token_name, 0, 0, Token.Token_Type.notEqual, Token.ID_Type.none,"");
 
                 case 36:
-                    return new Token(token_name, 0, 0, Token.Token_Type.$, Token.ID_Type.none);
+                    return new Token(token_name, 0, 0, Token.Token_Type.$, Token.ID_Type.none,"");
 
                 case 37:
                     token_name = "";  //bayad bargardim be state 0 
                     currentState = 0;
 
                     break;
+                    
+                case 38:
+                    Token name38 = new Token(token_name, 0, 0, Token.Token_Type.plusEqual, Token.ID_Type.none, "");
+
+                    return name38;
+                    
+                case 39:
+                    Token name39 = new Token(token_name, 0, 0, Token.Token_Type.minusEqual, Token.ID_Type.none, "");
+
+                    return name39;
+                    
+                case 40:
+                    nChar = watchNextChar();
+                    nState = nextState(currentState, nChar);
+                    if (nChar == '$') {  
+                        return new Token("Cahracter Missing \'  ", 0, 0, Token.Token_Type.err, Token.ID_Type.none, "");
+
+                    } else if(nState!=-1) {
+                        ch = nextChar();
+                        token_name = token_name + ch;
+                        currentState = nState;
+                    }else{
+                       return new Token(token_name, 0, 0, Token.Token_Type.err, Token.ID_Type.none, ""); 
+                    }
+
+                    break;
+                    
+                case 41:
+                    nChar = watchNextChar();
+                    nState = nextState(currentState, nChar);
+                    if (nChar == '$') {  
+                        return new Token("Cahracter Missing \'  ", 0, 0, Token.Token_Type.err, Token.ID_Type.none, "");
+
+                    } else if(nState!=-1) {
+                        ch = nextChar();
+                        token_name = token_name + ch;
+                        currentState = nState;
+                    }else{
+                       return new Token(token_name, 0, 0, Token.Token_Type.err, Token.ID_Type.none, ""); 
+                    }
+
+                    break;
+                    
+                    
+                case 42:
+                    return new Token(token_name, 0, 0, Token.Token_Type.character, Token.ID_Type.none, "");
 
             }
       }
