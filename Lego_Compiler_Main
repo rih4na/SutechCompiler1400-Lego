@@ -12,13 +12,21 @@ public class Lego_compiler {
         file=scn.next();
         Lexical_Analysis obj = new Lexical_Analysis(file);
         Token token;
+        System.out.println("LEXICAL ANALYSIS");
         do{
             token = obj.nextToken();
+            obj.list.add(token);
             System.out.println(" [" + token.getName() + " , " + token.getToken_type() + " ]");
             if(token.getName().equals("$"))
                 break;
         }
         while(true);
+        System.out.println("Do You Want to See Sybmol Table ?[Y/N]");
+        String S1=scn.next();
+        if(S1.equalsIgnoreCase("y") || S1.equalsIgnoreCase("yes") ){
+        
+        System.out.println("=========================================");
+        obj.isID();
 
     }
 
