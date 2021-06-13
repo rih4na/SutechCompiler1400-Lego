@@ -481,6 +481,156 @@ public class Lexical_Analysis {
             }
         }
     }
+     ///////////////////////////////////
+    public void setValueAndType(Token name, int index) {
+
+        //-----------------
+        int b = index - 1;
+        int c = index + 1;
+        int d = index + 2;
+        //-----------------
+
+        if (list.get(b).getToken_type().toString().equals(Token.Token_Type.Long.toString()) ) {
+
+            if (list.get(c).getToken_type().toString().equals(Token.Token_Type.equal.toString()) && list.get(d).getToken_type().toString().equals(Token.Token_Type.intNumber.toString())) {
+                name.setId_type(Token.ID_Type.Long);
+                name.setValue(list.get(d).getName());
+
+            } else {
+                name.setId_type(Token.ID_Type.Long);
+                name.setValue(null);
+
+            }
+
+        } else if (list.get(b).getToken_type().toString().equals(Token.Token_Type.Int.toString())) {
+
+            if (list.get(c).getToken_type().toString().equals(Token.Token_Type.equal.toString())&& list.get(d).getToken_type().toString().equals(Token.Token_Type.intNumber.toString())) {
+
+                name.setId_type(Token.ID_Type.Int);
+                name.setValue(list.get(d).getName());
+
+            } else {
+                name.setId_type(Token.ID_Type.Int);
+                name.setValue(null);
+            }
+
+        } else if (list.get(b).getToken_type().toString().equals(Token.Token_Type.Boolean.toString())) {
+
+            if (list.get(c).getToken_type().toString().equals(Token.Token_Type.equal.toString())&& list.get(d).getToken_type().toString().equals(Token.Token_Type.Boolean_literal.toString())) {
+                name.setId_type(Token.ID_Type.Boolean);
+                name.setValue(list.get(d).getName());
+
+            } else {
+                name.setId_type(Token.ID_Type.Boolean);
+                name.setValue(null);
+
+            }
+
+        } else if (list.get(b).getToken_type().toString().equals(Token.Token_Type.Double.toString())) {
+
+            if (list.get(c).getToken_type().toString().equals(Token.Token_Type.equal.toString())&& list.get(d).getToken_type().toString().equals(Token.Token_Type.floatNumber.toString())) {
+                name.setId_type(Token.ID_Type.Double);
+                name.setValue(list.get(d).getName());
+
+            } else {
+                name.setId_type(Token.ID_Type.Double);
+                name.setValue(null);
+
+            }
+
+        } else if (list.get(b).getToken_type().toString().equals(Token.Token_Type.Float.toString())) {
+
+            if (list.get(c).getToken_type().toString().equals(Token.Token_Type.equal.toString())&& list.get(d).getToken_type().toString().equals(Token.Token_Type.floatNumber.toString())) {
+                name.setId_type(Token.ID_Type.Float);
+                name.setValue(list.get(d).getName());
+
+            } else {
+                name.setId_type(Token.ID_Type.Float);
+                name.setValue(null);
+
+            }
+
+        } else if (list.get(b).getToken_type().toString().equals(Token.Token_Type.Char.toString())) {
+
+            if (list.get(c).getToken_type().toString().equals(Token.Token_Type.equal.toString())&& list.get(d).getToken_type().toString().equals(Token.Token_Type.character.toString())) {
+                name.setId_type(Token.ID_Type.Char);
+                name.setValue(list.get(d).getName());
+
+            } else {
+                name.setId_type(Token.ID_Type.Char);
+                name.setValue(null);
+
+            }
+
+        } else if (list.get(b).getToken_type().toString().equals(Token.Token_Type.String.toString())) {
+
+            if (list.get(c).getToken_type().toString().equals(Token.Token_Type.equal.toString())&& list.get(d).getToken_type().toString().equals(Token.Token_Type.string.toString())) {
+                name.setId_type(Token.ID_Type.string);
+                name.setValue(list.get(d).getName());
+
+            } else {
+                name.setId_type(Token.ID_Type.string);
+                name.setValue(null);
+
+            }
+
+        } else {
+            if (list.get(c).getToken_type().toString().equals(Token.Token_Type.equal.toString())) {
+                name.setValue(list.get(d).getName());
+
+            } else {
+
+                name.setId_type(Token.ID_Type.none);
+                name.setValue(null);
+
+            }
+        }
+
+    }
+
+    //----------------------------------------- 
+    public void isID() {
+
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getToken_type().toString().equals(Token.Token_Type.id.toString())) {
+
+                setValueAndType(list.get(i), i);
+
+
+                if (s_count == 0) {
+                    Symbol_Table[0] = list.get(i);
+                    s_count++;
+                } else {
+                    int j = 0;
+                    for (int k = 0; k < s_count; k++) {
+
+                        if (Symbol_Table[k].getName().equals(list.get(i).getName())) {
+                            
+                            j++;
+                            if (list.get(i).getValue() != null) {
+                                Symbol_Table[k].setValue(list.get(i).getValue());
+                                
+                                break;
+
+                            }
+
+                        }
+
+                    }
+                    if (j == 0) {
+                        Symbol_Table[s_count] = list.get(i);
+                        s_count++;
+                    }
+
+                }
+
+            }
+        }
+
+        for (int a = 0; a < s_count; a++) {
+            System.out.println(Symbol_Table[a]);
+        }
+    }
 
     //-----------------------------------nextChar
     private char nextChar() {
