@@ -31,7 +31,7 @@ public class Lego_compiler {
         }
 
     }
-    //Lexical_Analysis obj = new Lexical_Analysis("C:\\Users\\LENOVO\\Desktop\\lego.txt");
+    
 
 }
 
