@@ -6,7 +6,7 @@ public class Token {
         leftParentheses, rightParentheses, semicolon, leftAccolade, rightAccolade,
         divide, lineComment, multiLineComment, String, multiple, equal,
         equalTwice, less, lessEqual, more , moreEqual, notEqual, $, err,For,While,IF,Else,Then,Switch,Case,Break,ElseIf,Elseif,Static,Void,Public,Default,
-        Continue
+        Continue,character,plusEqual,minusEqual,Boolean_literal
     }
     public enum ID_Type { Long,Int,string,Char,Boolean,Double,Float,none}
 
@@ -15,13 +15,15 @@ public class Token {
     private int blockOrder;
     private Token_Type token_type;
     private ID_Type id_type;
+    private String value;
 
- public Token(String name, int blkNum, int blkOrder, Token_Type token_type, ID_Type id_type){
+ public Token(String name, int blkNum, int blkOrder, Token_Type token_type, ID_Type id_type,String value){
         this.name = name;
         this.blockkNum = blkNum;
         this.blockOrder = blkOrder;
         this.token_type = token_type;
         this.id_type = id_type;
+        this.value=value;
     }
 
     
@@ -72,6 +74,21 @@ public class Token {
     
     public void setId_type(ID_Type id_type) {
         this.id_type = id_type;
+    }
+    
+    public String getValue() {
+        return value;
+    }
+
+   
+    public void setValue(String value) {
+        this.value = value;
+    }
+   
+    @Override
+    public String toString(){
+        
+        return getName()+" , "+getToken_type()+" , "+getId_type()+" , "+getValue()+"\n";
     }
    
     
